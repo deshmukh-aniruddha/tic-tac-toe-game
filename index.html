@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <title>Tic Tac Toe</title>
+</head>
+
+<body>
+
+
+  <div id="new-game-menu" role="navigation">
+    <div class="xo-displayed">
+      <img src="icon-x.svg" alt="X" />
+      <img src="icon-o.svg" alt="o" />
+    </div>
+
+    <div class="menu">
+      <h1>PICK PLAYER 1'S MARK</h1>
+      <div class="selection">
+        <div class="x" id="x" onclick="toggleSelection(this)">
+          <img src="icon-x-silver.svg" alt="x" />
+        </div>
+        <div class="o menu-selected-character" id="o" onclick="toggleSelection(this)">
+          <img src="icon-o-dark-navy.svg" alt="o" />
+        </div>
+      </div>
+      <p class="reminder">REMEMBER: X GOES FIRST</p>
+    </div>
+    <div class="buttons-container">
+      <button class="btn-primary gold" id="ai" onclick="toggleHumanOrAI(this)">
+        New Game (vs CPU)
+      </button>
+      <button class="btn-primary blue" id="human" onclick="toggleHumanOrAI(this)">
+        New Game (vs player)
+      </button>
+    </div>
+  </div>
+
+  <!-- New game menu end -->
+
+  <!-- Game board start -->
+
+  <main id="game-board">
+    <header>
+      <div class="xo-displayed">
+        <img src="icon-x.svg" alt="x" />
+        <img src="icon-o.svg" alt="o" />
+      </div>
+      <div class="whos-turn">
+        <img src="icon-x-silver.svg" alt="x" />
+        <h2>TURN</h2>
+      </div>
+      <div class="restart" onclick="restartModalOpen()">
+        <img src="icon-restart.svg" alt="restart" />
+      </div>
+    </header>
+    <div class="main-game">
+      <div class="row">
+        <div class="cell" id="0,2" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+        <div class="cell" id="1,2" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+        <div class="cell" id="2,2" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+      </div>
+      <div class="row">
+        <div class="cell" id="0,1" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+        <div class="cell" id="1,1" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+        <div class="cell" id="2,1" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+      </div>
+
+      <div class="row">
+        <div class="cell" id="0,0" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+        <div class="cell" id="1,0" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+        <div class="cell" id="2,0" onClick="cellClickHandler(this)" onMouseEnter="cellHoverEffect(this)"
+          onMouseLeave="cellMouseLeave(this)"></div>
+      </div>
+    </div>
+    <footer>
+      <div class="score" id="x-score">
+        <h3>X (<span id="who-is-x">P1</span>)</h3>
+        <p>0</p>
+      </div>
+      <div class="score" id="ties">
+        <h3>Ties</h3>
+        <p>0</p>
+      </div>
+      <div class="score" id="o-score">
+        <h3>O (<span id="who-is-o">P2</span>)</h3>
+        <p>0</p>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Game board end -->
+
+  <!-- Modals -->
+
+  <div class="modal" id="modal">
+    <p class="message">OH NO, YOU LOST...</p>
+    <div class="result">
+      <img src="icon-x.svg" alt="o" />
+      <p class="x-winner" id="winner">TAKES THE ROUND</p>
+    </div>
+    <div class="options">
+      <button class="btn-primary btn-sm silver" id="quit" onclick="quit()">
+        QUIT
+      </button>
+      <button class="btn-primary btn-md gold" id="next" onclick="nextRound()">
+        NEXT ROUND
+      </button>
+    </div>
+  </div>
+
+  <div class="modal" id="reset-modal">
+    <div class="result">
+      <p class="restart-game">RESTART GAME?</p>
+    </div>
+    <div class="options">
+      <button class="btn-primary btn-md silver" id="cancel" onclick="restartRoundCancel()">
+        NO, CANCEL
+      </button>
+      <button class="btn-primary btn-md gold" id="restart" onclick="restartRound()">
+        YES, RESTART
+      </button>
+    </div>
+  </div>
+
+  <!-- importing js -->
+  <script src="./game.js"></script>
+</body>
+
+</html>
